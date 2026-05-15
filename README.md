@@ -1,68 +1,63 @@
-# Лабораторная работа №4
-
-## Тема
-
-Автоматизированное документирование REST API с использованием OpenAPI / Swagger.
+# Лабораторная работа №6  
+## MongoDB + Flask REST API
 
 ## Описание проекта
 
-Проект является продолжением лабораторной работы №3.
+Проект представляет собой REST API на Flask с JWT авторизацией, OAuth Yandex, Swagger документацией, Redis и MongoDB.
 
-В приложении реализованы:
+В рамках лабораторной работы выполнена миграция слоя хранения данных с PostgreSQL на MongoDB.
 
-- REST API на Flask;
-- PostgreSQL;
-- Docker / Docker Compose;
-- регистрация и вход пользователей;
-- JWT access / refresh tokens;
-- хранение токенов в HttpOnly cookies;
-- refresh токены;
-- logout и logout-all;
-- OAuth авторизация через Yandex ID;
-- защищенный CRUD задач;
-- soft delete задач;
-- автоматическая Swagger/OpenAPI документация.
+Реализовано:
 
-В лабораторной работе №4 добавлена автоматическая документация API через Swagger UI.
+- JWT authentication
+- Refresh tokens
+- HttpOnly cookies
+- OAuth Yandex
+- CRUD задач
+- Soft Delete
+- Пагинация
+- Swagger документация
+- Docker Compose инфраструктура
+- MongoDB
+- Redis
 
-Документация доступна только в режиме разработки.
+---
 
-## Стек
+# Используемые технологии
 
 - Python 3.12
 - Flask
-- Flask-SQLAlchemy
-- Flask-Migrate
-- PostgreSQL 16
-- PyJWT
-- Requests
-- Flasgger
+- MongoDB 6
+- PyMongo
+- Redis 7
 - Docker
 - Docker Compose
+- JWT
+- Swagger / Flasgger
 
-## Переменные окружения
+---
 
-Пример `.env.example`:
+# Структура проекта
 
-```env
-FLASK_APP=run.py
-FLASK_ENV=development
-APP_ENV=development
-SWAGGER_ENABLED=true
-
-DB_HOST=postgres
-DB_PORT=5432
-DB_NAME=wp_labs
-DB_USER=student
-DB_PASSWORD=your_password
-
-PORT=4200
-
-JWT_ACCESS_SECRET=change_me_access_secret
-JWT_REFRESH_SECRET=change_me_refresh_secret
-JWT_ACCESS_EXPIRATION=15m
-JWT_REFRESH_EXPIRATION=7d
-
-YANDEX_CLIENT_ID=your_yandex_client_id
-YANDEX_CLIENT_SECRET=your_yandex_client_secret
-YANDEX_CALLBACK_URL=http://localhost:4200/auth/oauth/yandex/callback
+```text
+app/
+├── database/
+│   └── mongo.py
+├── middleware/
+│   └── auth_middleware.py
+├── models/
+│   ├── auth_token.py
+│   ├── task.py
+│   └── user.py
+├── routes/
+│   ├── auth_routes.py
+│   └── task_routes.py
+├── services/
+│   ├── auth_service.py
+│   └── task_service.py
+├── utils/
+│   ├── cookie_utils.py
+│   ├── hash_utils.py
+│   └── jwt_utils.py
+├── swagger.py
+└── __init__.py
