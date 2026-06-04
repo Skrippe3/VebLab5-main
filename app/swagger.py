@@ -33,6 +33,14 @@ def setup_swagger(app):
                 "name": "Tasks",
                 "description": "Защищенный CRUD задач пользователя",
             },
+            {
+                "name": "Files",
+                "description": "Authorized MinIO object storage upload, download and delete endpoints",
+            },
+            {
+                "name": "Profile",
+                "description": "Current user profile and avatar file binding",
+            },
         ],
         "securityDefinitions": {
             "cookieAuth": {
@@ -116,6 +124,112 @@ def setup_swagger(app):
                         "type": "string",
                         "nullable": True,
                         "example": "123456789",
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": True,
+                        "example": "Student",
+                    },
+                    "bio": {
+                        "type": "string",
+                        "nullable": True,
+                        "example": "Web programming labs",
+                    },
+                    "avatarFileId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": True,
+                        "example": "3c7a2a41-7d7b-4fd5-8a7d-f3e03a9d98a1",
+                    },
+                },
+            },
+            "FileResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "3c7a2a41-7d7b-4fd5-8a7d-f3e03a9d98a1",
+                    },
+                    "originalName": {
+                        "type": "string",
+                        "example": "avatar.png",
+                    },
+                    "size": {
+                        "type": "integer",
+                        "example": 204800,
+                    },
+                    "mimetype": {
+                        "type": "string",
+                        "example": "image/png",
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-05-21T12:00:00",
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-05-21T12:00:00",
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "/files/3c7a2a41-7d7b-4fd5-8a7d-f3e03a9d98a1",
+                    },
+                },
+            },
+            "ProfileUpdateRequest": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string",
+                        "example": "Student",
+                    },
+                    "bio": {
+                        "type": "string",
+                        "example": "Web programming labs",
+                    },
+                    "avatarFileId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": True,
+                        "example": "3c7a2a41-7d7b-4fd5-8a7d-f3e03a9d98a1",
+                    },
+                },
+            },
+            "ProfileResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "6655a2a87333f2519990d123",
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "test@mail.com",
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "nullable": True,
+                        "example": "Student",
+                    },
+                    "bio": {
+                        "type": "string",
+                        "nullable": True,
+                        "example": "Web programming labs",
+                    },
+                    "avatarFileId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": True,
+                        "example": "3c7a2a41-7d7b-4fd5-8a7d-f3e03a9d98a1",
+                    },
+                    "avatarUrl": {
+                        "type": "string",
+                        "nullable": True,
+                        "example": "/files/3c7a2a41-7d7b-4fd5-8a7d-f3e03a9d98a1",
                     },
                 },
             },
