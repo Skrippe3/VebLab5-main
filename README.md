@@ -8,7 +8,6 @@
 В рамках лабораторной работы выполнена миграция слоя хранения данных с PostgreSQL на MongoDB.
 
 Реализовано:
-
 - JWT authentication
 - Refresh tokens
 - HttpOnly cookies
